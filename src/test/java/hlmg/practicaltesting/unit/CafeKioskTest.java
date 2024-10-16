@@ -3,6 +3,7 @@ package hlmg.practicaltesting.unit;
 import hlmg.practicaltesting.unit.beverage.Americano;
 import hlmg.practicaltesting.unit.beverage.Latte;
 import hlmg.practicaltesting.unit.order.Order;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
@@ -13,6 +14,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CafeKioskTest {
 
+    @DisplayName("음료 1개를 추가하면 주문 목록에 담긴다.")
     @Test
     void add() {
         CafeKiosk cafeKiosk = new CafeKiosk();
@@ -73,6 +75,7 @@ class CafeKioskTest {
         assertThat(cafeKiosk.getBeverages()).isEmpty();
     }
 
+    @DisplayName("주문 목록에 담긴 상품들의 총 금액을 계산할 수 있다.")
     @Test
     void calculateTotalPrice() {
         CafeKiosk cafeKiosk = new CafeKiosk();
