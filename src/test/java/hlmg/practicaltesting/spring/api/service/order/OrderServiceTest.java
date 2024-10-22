@@ -10,6 +10,7 @@ import static org.assertj.core.api.Assertions.tuple;
 
 import hlmg.practicaltesting.spring.api.controller.order.request.OrderCreateRequest;
 import hlmg.practicaltesting.spring.api.service.order.reponse.OrderResponse;
+import hlmg.practicaltesting.spring.api.service.order.request.OrderCreateServiceRequest;
 import hlmg.practicaltesting.spring.domain.order.OrderRepository;
 import hlmg.practicaltesting.spring.domain.orderproduct.OrderProductRepository;
 import hlmg.practicaltesting.spring.domain.product.Product;
@@ -66,7 +67,7 @@ class OrderServiceTest {
         Product product3 = createProduct(HANDMADE, "003", 5000);
         productRepository.saveAll(List.of(product1, product2, product3));
 
-        OrderCreateRequest request = OrderCreateRequest.builder()
+        OrderCreateServiceRequest request = OrderCreateServiceRequest.builder()
                 .productNumbers(List.of("001", "002"))
                 .build();
 
@@ -97,7 +98,7 @@ class OrderServiceTest {
         Product product3 = createProduct(HANDMADE, "003", 5000);
         productRepository.saveAll(List.of(product1, product2, product3));
 
-        OrderCreateRequest request = OrderCreateRequest.builder()
+        OrderCreateServiceRequest request = OrderCreateServiceRequest.builder()
                 .productNumbers(List.of("001", "001"))
                 .build();
 
@@ -132,7 +133,7 @@ class OrderServiceTest {
         Stock stock2 = Stock.create("002", 2);
         stockRepository.saveAll(List.of(stock1, stock2));
 
-        OrderCreateRequest request = OrderCreateRequest.builder()
+        OrderCreateServiceRequest request = OrderCreateServiceRequest.builder()
                 .productNumbers(List.of("001", "001", "002", "003"))
                 .build();
 
@@ -178,7 +179,7 @@ class OrderServiceTest {
         stock1.deductQuantity(1);
         stockRepository.saveAll(List.of(stock1, stock2));
 
-        OrderCreateRequest request = OrderCreateRequest.builder()
+        OrderCreateServiceRequest request = OrderCreateServiceRequest.builder()
                 .productNumbers(List.of("001", "001", "002", "003"))
                 .build();
 

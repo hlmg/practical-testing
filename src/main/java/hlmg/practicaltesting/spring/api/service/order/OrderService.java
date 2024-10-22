@@ -2,6 +2,7 @@ package hlmg.practicaltesting.spring.api.service.order;
 
 import hlmg.practicaltesting.spring.api.controller.order.request.OrderCreateRequest;
 import hlmg.practicaltesting.spring.api.service.order.reponse.OrderResponse;
+import hlmg.practicaltesting.spring.api.service.order.request.OrderCreateServiceRequest;
 import hlmg.practicaltesting.spring.domain.order.Order;
 import hlmg.practicaltesting.spring.domain.order.OrderRepository;
 import hlmg.practicaltesting.spring.domain.product.Product;
@@ -26,7 +27,7 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final StockRepository stockRepository;
 
-    public OrderResponse createOrder(OrderCreateRequest request, LocalDateTime registeredDateTime) {
+    public OrderResponse createOrder(OrderCreateServiceRequest request, LocalDateTime registeredDateTime) {
         List<String> productNumbers = request.getProductNumbers();
         List<Product> products = findProductsBy(productNumbers);
 

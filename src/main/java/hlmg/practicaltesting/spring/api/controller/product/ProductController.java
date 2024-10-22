@@ -1,8 +1,10 @@
 package hlmg.practicaltesting.spring.api.controller.product;
 
+import hlmg.practicaltesting.spring.api.ApiResponse;
 import hlmg.practicaltesting.spring.api.controller.product.dto.request.ProductCreateRequest;
 import hlmg.practicaltesting.spring.api.service.product.ProductService;
 import hlmg.practicaltesting.spring.api.service.product.response.ProductResponse;
+import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,13 +18,13 @@ public class ProductController {
     private final ProductService productService;
 
     @PostMapping("/api/v1/products/new")
-    public void createProduct(@RequestBody ProductCreateRequest request) {
-        productService.createProduct(request);
+    public ApiResponse<ProductResponse> createProduct(@Valid @RequestBody ProductCreateRequest request) {
+        return ApiResponse.ok(productService.createProduct(request.toServiceRequest()));
     }
 
-    @GetMapping("/api/v1/products/celling")
-    public List<ProductResponse> getSellingProducts() {
-        return productService.getSellingProducts();
+    @GetMapping("/api/v1/products/selling")
+    public ApiResponse<List<ProductResponse>> getSellingProducts() {
+        return ApiResponse.ok(productService.getSellingProducts());
     }
 
 }
